@@ -12,8 +12,10 @@ export class AppComponent implements OnInit {
 
   constructor(private diceRollerService: DiceRollerService) {}
 
-  ngOnInit() {
-    this.diceRollerService.diceRoller.on('diceRoller', this.updateDiceChar);
+  async ngOnInit() {
+    await this.diceRollerService.loadFluidObject();
+    this.diceRollerService.diceRoller.on('diceRolled', this.updateDiceChar);
+    this.roll();
   }
 
   updateDiceChar = () => {

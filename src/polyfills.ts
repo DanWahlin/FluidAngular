@@ -57,6 +57,12 @@
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
+// For Fluid
+(window as any).global = window;
+global.Buffer = global.Buffer || require('buffer').Buffer;
+global.process = require('process');
+global.process.env = { NODE_DEBUG: 'false' }
+
 
 /***************************************************************************************************
  * APPLICATION IMPORTS

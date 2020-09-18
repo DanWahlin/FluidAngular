@@ -18,7 +18,6 @@ export class DiceRollerService {
             window.location.hash = Date.now().toString();
         }
         this.documentId = window.location.hash.substring(1);
-        this.loadFluidObject();
     }
 
     async loadFluidObject() {

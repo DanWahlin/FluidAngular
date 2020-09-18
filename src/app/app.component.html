@@ -1,5 +1,5 @@
 <div style="text-align: center">
-  <div style="font-size: 200px;color:'{{diceCharColor}}'">
+  <div style="font-size: 200px;" [ngStyle]="{color: diceCharColor }">
     {{diceChar}}
   </div>
   <button style="font-size: 50px" (click)="roll()">Roll</button>
