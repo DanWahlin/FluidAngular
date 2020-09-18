@@ -23,6 +23,7 @@
     "@fluidframework/aqueduct": "0.25.1-833",
     "@fluidframework/map": "0.25.1-833",
     "@fluidframework/get-tinylicious-container": "0.25.1-833",
+    "@fluidframework/framework-interfaces": "0.25.1-833",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
