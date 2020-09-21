@@ -1,30 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { DiceRollerService } from './services/diceRoller.service';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { DiceRoller } from './services/dataObject';
+import { FluidLoaderService } from './services/fluid-loader.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   diceChar: string;
   diceCharColor: string;
+  dataObject: DiceRoller;
+  sub: Subscription;
 
-  constructor(private diceRollerService: DiceRollerService) {}
+  constructor(private fluidService: FluidLoaderService, 
+              private changeDetector: ChangeDetectorRef) {}
 
   async ngOnInit() {
-    await this.diceRollerService.loadFluidObject();
-    this.diceRollerService.diceRoller.on('diceRolled', this.updateDiceChar);
-    this.roll();
+    this.dataObject = await this.fluidService.loadFluidObject<DiceRoller>();
+    this.sub = this.dataObject.diceRolled$.subscribe(this.updateDiceChar);
   }
 
-  updateDiceChar = () => {
+  updateDiceChar = (val: number) => {
     // Unicode 0x2680-0x2685 are the sides of a dice (⚀⚁⚂⚃⚄⚅)
-    this.diceChar = String.fromCodePoint(0x267F + this.diceRollerService.diceRoller.value);
-    this.diceCharColor = `hsl(${this.diceRollerService.diceRoller.value * 60}, 70%, 50%)`;
-};
+    this.diceChar = String.fromCodePoint(0x267F + val);
+    this.diceCharColor = `hsl(${val * 60}, 70%, 50%)`;
+    // diceRolled event is occuring outside of Angular so detecting changes
+    this.changeDetector.detectChanges();
+  }
 
-  roll() {
-    this.diceRollerService.diceRoller.roll();
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

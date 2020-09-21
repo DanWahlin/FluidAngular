@@ -3,29 +3,9 @@
  * Licensed under the MIT License.
  */
 
-import { EventEmitter } from "events";
+import { BehaviorSubject } from 'rxjs';
 import { DataObject, DataObjectFactory } from "@fluidframework/aqueduct";
 import { IValueChanged } from "@fluidframework/map";
-
-/**
- * IDiceRoller describes the public API surface for our dice roller data object.
- */
-export interface IDiceRoller extends EventEmitter {
-    /**
-     * Get the dice value as a number.
-     */
-    readonly value: number;
-
-    /**
-     * Roll the dice.  Will cause a "diceRolled" event to be emitted.
-     */
-    roll: () => void;
-
-    /**
-     * The diceRolled event will fire whenever someone rolls the device, either locally or remotely.
-     */
-    on(event: "diceRolled", listener: () => void): this;
-}
 
 // The root is map-like, so we'll use this key for storing the value.
 const diceValueKey = "diceValue";
@@ -33,7 +13,10 @@ const diceValueKey = "diceValue";
 /**
  * The DiceRoller is our data object that implements the IDiceRoller interface.
  */
-export class DiceRoller extends DataObject implements IDiceRoller {
+export class DiceRoller extends DataObject {
+    private diceRolledSubject$ = new BehaviorSubject<number>(1);
+    diceRolled$ = this.diceRolledSubject$.asObservable();
+
     /**
      * initializingFirstTime is run only once by the first client to create the DataObject.  Here we use it to
      * initialize the state of the DataObject.
@@ -49,8 +32,8 @@ export class DiceRoller extends DataObject implements IDiceRoller {
     protected async hasInitialized() {
         this.root.on("valueChanged", (changed: IValueChanged) => {
             if (changed.key === diceValueKey) {
-                // When we see the dice value change, we'll emit the diceRolled event we specified in our interface.
-                this.emit("diceRolled");
+                // When we see the dice value change, we'll emit the value
+                this.diceRolledSubject$.next(this.value);
             }
         });
     }
