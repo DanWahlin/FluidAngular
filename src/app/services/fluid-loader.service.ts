@@ -17,7 +17,7 @@ export class FluidLoaderService {
         this.documentId = window.location.hash.substring(1);
     }
 
-    async loadFluidObject<T>() {
+    async loadDataObject<T>() {
         // The getTinyliciousContainer helper function facilitates loading our container code into a Container and
         // connecting to a locally-running test service called Tinylicious.  This will look different when moving to a
         // production service, but ultimately we'll still be getting a reference to a Container object.  

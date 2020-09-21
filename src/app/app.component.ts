@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
               private changeDetector: ChangeDetectorRef) {}
 
   async ngOnInit() {
-    this.dataObject = await this.fluidService.loadFluidObject<DiceRoller>();
+    this.dataObject = await this.fluidService.loadDataObject<DiceRoller>();
     this.sub = this.dataObject.diceRolled$.subscribe(this.updateDiceChar);
   }
 
