@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "node patch-webpack.js"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +24,6 @@
     "@fluidframework/aqueduct": "0.26.0",
     "@fluidframework/get-tinylicious-container": "0.26.0",
     "@fluidframework/map": "0.26.0",
-    "assert": "^2.0.0",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
