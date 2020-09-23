@@ -1,4 +1,4 @@
-# Fluid Angular
+# Fluid Angular Dicer Roller
 
 Step to run the app:
 
