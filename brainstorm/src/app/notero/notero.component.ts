@@ -11,7 +11,8 @@ import { INote, IUser } from '../shared/interfaces';
         [model]="model"
         [user]="user"
         [users]="users"
-        [highlightMine]="highlightMine"></app-pad>
+        [highlightMine]="highlightMine"
+        (onHighlightMine)="onHighlightMine($event)"></app-pad>
       <app-board
         [model]="model"
         [notes]="notes"
@@ -24,7 +25,7 @@ export class NoteroComponent implements OnInit, OnDestroy {
 
   @Input() model: Notero;
   @Input() state: any;
-  @Input() highlightMine: boolean;
+  highlightMine: boolean;
   user: IUser;
   users: IUser[];
   notes: INote[];
@@ -57,6 +58,10 @@ export class NoteroComponent implements OnInit, OnDestroy {
     }
     // Event is occuring outside of Angular so detecting changes
     this.changeDetector.detectChanges();
+  }
+
+  onHighlightMine(highlightMine: boolean) {
+    this.highlightMine = highlightMine;
   }
 
   ngOnDestroy() {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Notero } from '../services/notero.dataobject';
 import { IUser } from '../shared/interfaces';
 
@@ -29,8 +29,8 @@ export class PadComponent implements OnInit {
   @Input() model: Notero;
   @Input() user: IUser;
   @Input() users: IUser[];
-  @Input() setHighlightMine: (value: boolean) => void;
   @Input() highlightMine: boolean;
+  @Output() onHighlightMine = new EventEmitter<boolean>();
   value = '';
   disabled = false;
 
@@ -64,6 +64,7 @@ export class PadComponent implements OnInit {
 
   handleHighlight() {
     this.highlightMine = !this.highlightMine;
+    this.onHighlightMine.emit(this.highlightMine);
   }
 
 }
