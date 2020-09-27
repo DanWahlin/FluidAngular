@@ -5,7 +5,7 @@
 
 import { ContainerRuntimeFactoryWithDefaultDataStore } from "@fluidframework/aqueduct";
 
-import { DiceRollerInstantiationFactory } from "./dataObject";
+import { DiceRollerInstantiationFactory } from "./diceroller.dataobject";
 
 /**
  * The DiceRollerContainerRuntimeFactory is the container code for our scenario.

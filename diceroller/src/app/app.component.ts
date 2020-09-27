@@ -1,12 +1,19 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DiceRoller } from './services/dataObject';
+import { DiceRoller } from './services/diceroller.dataobject';
 import { FluidLoaderService } from './services/fluid-loader.service';
+import { DiceRollerContainerRuntimeFactory } from "./services/containerCode";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+    <div style="text-align: center">
+      <div style="font-size: 200px;" [ngStyle]="{color: diceCharColor }">
+        {{diceChar}}
+      </div>
+      <button style="font-size: 50px" (click)="dataObject.roll()">Roll</button>
+    </div>
+  `
 })
 export class AppComponent implements OnInit, OnDestroy {
   diceChar: string;
@@ -18,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
               private changeDetector: ChangeDetectorRef) {}
 
   async ngOnInit() {
-    this.dataObject = await this.fluidService.loadDataObject<DiceRoller>();
+    this.dataObject = await this.fluidService.loadDataObject<DiceRoller>(DiceRollerContainerRuntimeFactory);
     this.sub = this.dataObject.diceRolled$.subscribe(this.updateDiceChar);
   }
 
