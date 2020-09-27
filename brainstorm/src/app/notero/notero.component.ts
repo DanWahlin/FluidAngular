@@ -24,24 +24,21 @@ import { INote, IUser } from '../shared/interfaces';
 export class NoteroComponent implements OnInit, OnDestroy {
 
   @Input() model: Notero;
-  @Input() state: any;
   highlightMine: boolean;
   user: IUser;
   users: IUser[];
   notes: INote[];
-  sub: Subscription;
+  changeSub: Subscription;
 
   constructor(private changeDetector: ChangeDetectorRef) { }
 
-  ngOnInit()  {
-
-  }
+  ngOnInit()  { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!this.sub && changes.model && changes.model.currentValue) {
+    if (!this.changeSub && changes.model && changes.model.currentValue) {
       this.model = changes.model.currentValue;
       this.notes = this.model.getNotesFromBoard();
-      this.sub = this.model.change$.subscribe((change: any) => this.changed(change));
+      this.changeSub = this.model.change$.subscribe((change: any) => this.changed(change));
     }
   }
 
@@ -65,7 +62,7 @@ export class NoteroComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.changeSub.unsubscribe();
   }
 
 }

@@ -20,16 +20,12 @@ export class BoardComponent implements OnInit {
 
   @Input() model: Notero;
   @Input() notes: INoteWithVotes[];
-  @Input() createNote: INote;
-  @Input() demo: string;
   @Input() user: IUser;
-  @Input() users: IUser[];
   @Input() highlightMine: any;
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   vote(note: INote) {
     this.model.vote(note);

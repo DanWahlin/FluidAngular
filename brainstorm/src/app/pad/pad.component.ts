@@ -8,8 +8,7 @@ import { IUser } from '../shared/interfaces';
     <div class="container">
       <div class="pad">
         <div class="note editor">
-          <textarea
-            class="note-text"
+          <textarea class="note-text"
             (keydown)="onKeyDown($event)"
             (focus)="onNoteFocus($event)"
             [value]="value"
@@ -36,8 +35,7 @@ export class PadComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   createNote() {
     this.model.createNote(this.value);
@@ -51,6 +49,7 @@ export class PadComponent implements OnInit {
   }
 
   onKeyDown (e: any) {
+    // Handle enter
     if (e.keyCode == 13 && !e.shiftKey) {
       e.preventDefault();
       this.model.createNote(this.value);
