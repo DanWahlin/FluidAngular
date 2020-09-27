@@ -5,7 +5,7 @@ import { NoteroContainerFactory } from './services/containerCode';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  template: `<app-notero [model]="dataObject"></app-notero>`
 })
 export class AppComponent implements OnInit {
 
