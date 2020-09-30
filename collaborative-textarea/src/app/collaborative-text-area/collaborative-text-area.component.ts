@@ -4,6 +4,7 @@ import { SharedString } from '@fluidframework/sequence';
 @Component({
   selector: 'app-collaborative-text-area',
   template: `
+    <h1>Collaborative Text Area</h1>
     <!-- There are a lot of different ways content can be inserted into a textarea
          and not all of them trigger a onBeforeInput event. To ensure we are grabbing
          the correct selection before we modify the shared string we need to make sure
