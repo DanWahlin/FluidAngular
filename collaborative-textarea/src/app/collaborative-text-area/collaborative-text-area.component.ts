@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { SharedString } from '@fluidframework/sequence';
 
 @Component({
@@ -30,7 +30,7 @@ export class CollaborativeTextAreaComponent implements OnInit, AfterViewInit {
   selectionEnd = 0;
   selectionStart = 0;
 
-  constructor() { }
+  constructor(private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() { 
     this.text = this.sharedString.getText();
@@ -101,6 +101,9 @@ export class CollaborativeTextAreaComponent implements OnInit, AfterViewInit {
 
       this.text = newText;
       this.setCaretPosition(newCaretStart, newCaretEnd);
+      // The event we're listening for here fires outside of Angular
+      // so let it know to detect changes
+      this.changeDetector.detectChanges();
     });
   }
 
