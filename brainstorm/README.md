@@ -1,4 +1,4 @@
-# Fluid Angular Dicer Roller
+# Fluid Angular Brainstorm Demo
 
 Step to run the app:
 

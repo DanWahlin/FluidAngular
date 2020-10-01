@@ -1,4 +1,4 @@
-# Fluid Angular Dicer Roller
+# Fluid Angular Collaborative Text Demo
 
 Step to run the app:
 
