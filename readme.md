@@ -1,4 +1,4 @@
-# Welcome to the Fluid Framework Angular Examples Repository!
+# Fluid Framework Angular Examples Repository
 
 This codebase includes examples of collaborative applications built with the Fluid Framework and Angular. For documentation about the Fluid Framework, go to https://FluidFramework.com. The Fluid Framework repository lives at https://github.com/Microsoft/FluidFramework.
 
