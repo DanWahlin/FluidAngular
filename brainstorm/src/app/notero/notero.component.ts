@@ -37,22 +37,17 @@ export class NoteroComponent implements OnInit, OnDestroy {
   ngOnChanges(changes: SimpleChanges) {
     if (!this.changeSub && changes.model && changes.model.currentValue) {
       this.model = changes.model.currentValue;
-      this.notes = this.model.getNotesFromBoard();
+      this.changed();
       this.changeSub = this.model.change$.subscribe((change: any) => this.changed(change));
     }
   }
 
-  changed(change: any) {
-    switch (change) {
-      case 'valueChanged':
-        this.notes = this.model.getNotesFromBoard();
-        break;
-      case 'addMember':
-      case 'removeMember':
-        this.user = this.model.getUser();
-        this.users = this.model.getUsers();
-        break;
-    }
+  changed(change?: any) {
+    // Not using change here but could use it to provide more granular changes if needed
+    this.notes = this.model.getNotesFromBoard();
+    this.user = this.model.getUser();
+    this.users = this.model.getUsers();
+
     // Event is occuring outside of Angular so detecting changes
     this.changeDetector.detectChanges();
   }
