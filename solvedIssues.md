@@ -14,7 +14,7 @@ fs.readFile(f, 'utf8', function (err,data) {
     if (err) {
         return console.log(err);
     }
-    let result = data.replace(/node: false/g, "node: { crypto: true, stream: true, fs: 'empty', net: 'empty', assert: true }");
+    let result = data.replace(/node: false/g, "node: { crypto: true, stream: true, assert: true }");
     
     fs.writeFile(f, result, 'utf8', function (err) {
         if (err) return console.log(err);
@@ -23,4 +23,14 @@ fs.readFile(f, 'utf8', function (err,data) {
 ```
 
 More details about why this is being done can be found at https://blog.lysender.com/2018/07/angular-6-cannot-resolve-crypto-fs-net-path-stream-when-building-angular/
+
+Tried doing this in package.json but never got it to work:
+
+```javascript
+"browser": {
+    "crypto": false,
+    "stream": false,
+    "assert": false
+}
+```
 

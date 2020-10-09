@@ -129,7 +129,6 @@ export class CollaborativeTextAreaComponent implements OnInit, AfterViewInit {
     // We need to set the value here to keep the input responsive to the user
     const currentTarget = event.currentTarget;
     const newText = currentTarget.value;
-    const charactersModifiedCount = this.text.length - newText.length;
     this.text = newText;
 
     // Get the new caret position and use that to get the text that was inserted
@@ -145,6 +144,7 @@ export class CollaborativeTextAreaComponent implements OnInit, AfterViewInit {
       }
     } else {
       // Text was removed
+      const charactersModifiedCount = this.text.length - newText.length;
       this.sharedString.removeText(newPosition, newPosition + charactersModifiedCount);
     }
   }
