@@ -129,23 +129,23 @@ export class CollaborativeTextAreaComponent implements OnInit, AfterViewInit {
     // We need to set the value here to keep the input responsive to the user
     const currentTarget = event.currentTarget;
     const newText = currentTarget.value;
+    const charactersModifiedCount = this.text.length - newText.length;
     this.text = newText;
 
     // Get the new caret position and use that to get the text that was inserted
     const newPosition = currentTarget.selectionStart ? currentTarget.selectionStart : 0;
     const isTextInserted = newPosition - this.selectionStart > 0;
     if (isTextInserted) {
-      const insertedText = newText.substring(this.selectionStart, newPosition);
-      const changeRangeLength = this.selectionEnd - this.selectionStart;
-      if (changeRangeLength === 0) {
-        this.sharedString.insertText(this.selectionStart, insertedText);
-      } else {
-        this.sharedString.replaceText(this.selectionStart, this.selectionEnd, insertedText);
-      }
+        const insertedText = newText.substring(this.selectionStart, newPosition);
+        const changeRangeLength = this.selectionEnd - this.selectionStart;
+        if (changeRangeLength === 0) {
+            this.sharedString.insertText(this.selectionStart, insertedText);
+        } else {
+            this.sharedString.replaceText(this.selectionStart, this.selectionEnd, insertedText);
+        }
     } else {
-      // Text was removed
-      const charactersModifiedCount = this.text.length - newText.length;
-      this.sharedString.removeText(newPosition, newPosition + charactersModifiedCount);
+        // Text was removed
+        this.sharedString.removeText(newPosition, newPosition + charactersModifiedCount);
     }
   }
 
