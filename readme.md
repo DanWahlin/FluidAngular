@@ -5,7 +5,7 @@ This codebase includes examples of collaborative applications built with the Flu
 Each example is a standalone application that defines a Fluid Container and loads it into a webpage. To get started, clone the repo, go into a
 example folder that you want to run, and follow the instructions in the example's `readme.md` file.
 
-If you're using VS Code and don't already have the [Angular Language service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template) we recommend installing it.
+If you're using VS Code and don't already have the [Angular Language service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template&WT.mc_id=m365-0000-dwahlin) we recommend installing it.
 
 ## NOTE
 
