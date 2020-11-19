@@ -27,9 +27,9 @@ export class Notero extends DataObject implements INoteroDataModel {
     change$ = this.changeSubject$.asObservable();
 
     // Local references to the SharedMaps used in this component
-    private notesMap: SharedMap;
-    private votesMap: SharedMap;
-    private usersMap: SharedMap;
+
+
+
 
     // stores a fake userId as we aren't using true auth for this demo
     private userId: string;
@@ -45,17 +45,16 @@ export class Notero extends DataObject implements INoteroDataModel {
      */
     protected async initializingFirstTime() {
         // Create SharedMaps for the notes, votes, and users
-        this.createSharedMap("notes");
-        this.createSharedMap("votes");
-        this.createSharedMap("users");
+
+
     }
 
     /**
      * Creates a shared map with the provided id. The id must be unique.
      */
     private createSharedMap(id: string): void {
-        const map = SharedMap.create(this.runtime);
-        this.root.set(id, map.handle);
+
+
     }
 
     /**
@@ -76,9 +75,9 @@ export class Notero extends DataObject implements INoteroDataModel {
         this.addUser();
 
         // Set up event listeners to update the ui when data changes               
-        this.createEventListeners(this.notesMap);
-        this.createEventListeners(this.votesMap);
-        this.createEventListeners(this.usersMap);
+        // Add call to createEventListiners
+
+
     }
 
     /**
@@ -119,7 +118,10 @@ export class Notero extends DataObject implements INoteroDataModel {
                 text: text,
                 user: this.getUser()
             };
-            this.notesMap.set(note.id, note);
+
+            // Add note to distributed state
+
+
         }
     }
 
