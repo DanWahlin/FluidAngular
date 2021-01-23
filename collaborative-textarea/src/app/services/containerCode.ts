@@ -18,7 +18,7 @@ import { CollaborativeTextInstantiationFactory } from "./collaborative-text.data
  * Container with a URL of "/", so it can be retrieved via container.request("/").
  */
 export const CollaborativeTextContainerRuntimeFactory = new ContainerRuntimeFactoryWithDefaultDataStore(
-    CollaborativeTextInstantiationFactory.type,
+    CollaborativeTextInstantiationFactory,
     new Map([
         CollaborativeTextInstantiationFactory.registryEntry,
     ]),

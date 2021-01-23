@@ -19,6 +19,6 @@ import { NoteroInstantiationFactory } from "./notero.dataobject";
  * components.
  */
 export const NoteroContainerFactory = new ContainerRuntimeFactoryWithDefaultDataStore(
-  NoteroInstantiationFactory.type,
+  NoteroInstantiationFactory,
   new Map([NoteroInstantiationFactory.registryEntry])
 );
