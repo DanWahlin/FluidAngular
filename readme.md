@@ -11,6 +11,6 @@ If you're using VS Code and don't already have the [Angular Language service](ht
 
 Fluid is isomorphic and currently relies on Node objects such as crypto. As a result you'll see a postinstall script in the package.json file that modifies the build. The file paths that are patched depend on your version of Angular so you may have to open the `patch-webpack.js` and modify it if you're using Angular 11+ (this example is using Angular 10).
 
-**Angular 11+**     `const f = 'node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs/browser.js';`
-**Angular < 11**    `const f ='node_modules/@angular-devkit/build-angular/src/webpack/configs/browser.js';`
+**Angular 11+**     `const f ='node_modules/@angular-devkit/build-angular/src/webpack/configs/browser.js';` 
+**Angular < 11**    `const f = 'node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs/browser.js';`
 
